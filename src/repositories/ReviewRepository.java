@@ -24,7 +24,6 @@ public class ReviewRepository implements IReviewRepo {
         reviewMap.put(autoIncreament++, rev);
         return rev;
     }
-
     @Override
     public List<Review> findAll() {
         return new ArrayList<>(reviewMap.values());
@@ -33,6 +32,13 @@ public class ReviewRepository implements IReviewRepo {
     @Override
     public Optional<Review> findById(Long id) {
         return Optional.ofNullable(reviewMap.get(id));
+    }
+
+    @Override
+    public Review findByUserAndRestaurant(User user, Restaurant restaurant) {
+        return reviewMap.values().stream().filter(review ->
+                review.getCreatedByUser().equals(user) && review.getCreatedForRestaurant().equals(restaurant)
+        ).findFirst().orElse(null);
     }
 
     @Override
@@ -49,7 +55,9 @@ public class ReviewRepository implements IReviewRepo {
     public int count() {
         return reviewMap.size();
     }
-    public void decreamentAutoId() {
-        autoIncreament--;
+
+    @Override
+    public void updateRevMapWithNewReview(Long id, Review review) {
+        reviewMap.put(id, review);
     }
 }

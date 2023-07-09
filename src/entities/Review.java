@@ -10,6 +10,7 @@ public class Review {
     private final User createdByUser;
     private final Restaurant createdForRestaurant;
 
+
     public Review(Long id, byte rating, String dish_name, String description, User user, Restaurant restaurant) {
         this.id = id;
         this.rating = rating;
@@ -28,13 +29,13 @@ public class Review {
         this.createdForRestaurant = restaurant;
     }
 
-    public Review(byte rating, User user, Restaurant restaurant) {
+    public Review(byte rating) {
         this.id = null;
         this.rating = rating;
         this.dish_name = "";
         this.description = "";
-        this.createdByUser = user;
-        this.createdForRestaurant = restaurant;
+        this.createdByUser = null;
+        this.createdForRestaurant = null;
     }
 
     public Review(byte rating, String dish_name, String description, User user, Restaurant restaurant) {
@@ -44,6 +45,15 @@ public class Review {
         this.description = description;
         this.createdByUser = user;
         this.createdForRestaurant = restaurant;
+    }
+
+    public Review(byte rating, String dish_name, String description) {
+        this.id = null;
+        this.rating = rating;
+        this.dish_name = dish_name;
+        this.description = description;
+        this.createdByUser = null;
+        this.createdForRestaurant = null;
     }
 
     @Override
@@ -72,5 +82,13 @@ public class Review {
 
     public String getDescription() {
         return description;
+    }
+
+    public User getCreatedByUser() {
+        return createdByUser;
+    }
+
+    public Restaurant getCreatedForRestaurant() {
+        return createdForRestaurant;
     }
 }

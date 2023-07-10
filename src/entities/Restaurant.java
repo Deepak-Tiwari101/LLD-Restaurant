@@ -59,6 +59,14 @@ public class Restaurant {
                 ']';
     }
 
+    public String descRestaurant() {
+        return "Restaurant [" +
+                "id=" + id +
+                ", name=" + name +
+                ", rating=%.1f" + avg_rating +
+                ']';
+    }
+
     public void refreshAvgRating() {
         assert reviewsList != null;
         this.avg_rating = (float)reviewsList.stream()

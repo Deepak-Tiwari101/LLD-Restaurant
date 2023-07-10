@@ -68,6 +68,13 @@ public class Review {
         return Objects.hash(createdByUser, createdForRestaurant);
     }
 
+    @Override
+    public String toString() {
+        return "Review [" +
+                "id=" + id +
+                ']';
+    }
+
     public Long getId() {
         return id;
     }

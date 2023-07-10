@@ -48,7 +48,7 @@ public class ReviewServices {
             restaurant.getReviewsList().add(review);
             restaurant.refreshAvgRating();
         }
-        System.out.println(review + " added successfully for " + restaurant + " by " + user);
+        System.out.println(review + " added successfully for " + restaurant + " by " + user + "!");
     }
 
     public void addReview(byte rating, Long userId, Long restaurantId, String dishNames, String descriptions) {

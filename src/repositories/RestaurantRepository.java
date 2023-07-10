@@ -4,17 +4,14 @@ import entities.Restaurant;
 import entities.User;
 import repositories.interfaces.IRestaurantRepo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RestaurantRepository implements IRestaurantRepo {
     private final Map<Long, Restaurant> restaurantMap;
     private Long autoIncreament = 1L;
-    public RestaurantRepository(Map<Long, Restaurant> restaurantMap) {
-        this.restaurantMap = restaurantMap;
+    public RestaurantRepository() {
+        this.restaurantMap = new HashMap<>();
     }
 
     @Override

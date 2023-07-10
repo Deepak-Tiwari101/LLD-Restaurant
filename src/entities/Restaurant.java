@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,14 +15,14 @@ public class Restaurant {
         this.id = id;
         this.name = name;
         this.avg_rating = 0f;
-        reviewsList = null;
+        reviewsList = new ArrayList<>();
     }
 
     public Restaurant(String name) { // constructor override with no ID
         this.id = null;
         this.name = name;
         this.avg_rating = 0f;
-        reviewsList = null;
+        reviewsList = new ArrayList<>();
     }
 
     public Long getId() {
@@ -63,15 +64,23 @@ public class Restaurant {
         return "Restaurant [" +
                 "id=" + id +
                 ", name=" + name +
-                ", rating=%.1f" + avg_rating +
+                ", rating=" + String.format("%.1f", avg_rating) +
                 ']';
     }
 
     public void refreshAvgRating() {
-        assert reviewsList != null;
         this.avg_rating = (float)reviewsList.stream()
                 .mapToInt(Review::getRating)
                 .average()
                 .orElse(0.0);
+    }
+    public void addToReviewList(Review review) {
+        this.reviewsList.add(review);
+    }
+    public void setReviewsList(int index, Review review) {
+        this.reviewsList.set(index, review);
+    }
+    public int getIndexOfInReviewList(Review review) {
+        return this.reviewsList.indexOf(review);
     }
 }

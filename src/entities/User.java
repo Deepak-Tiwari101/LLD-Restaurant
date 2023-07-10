@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,14 +14,14 @@ public class User {
         this.id = id;
         this.name = name;
         level = UserLevel.LEVEL1; // at the beginning every user will have to start with level 1
-        reviewList = null;
+        reviewList = new ArrayList<>();
     }
 
     public User(String name) {
         this.id = null;
         this.name = name;
         level = UserLevel.LEVEL1;
-        reviewList = null;
+        reviewList = new ArrayList<>();
     }
 
     public Long getId() {
@@ -32,7 +33,6 @@ public class User {
     }
 
     public int getNum_ratings() {
-        assert reviewList != null : "Review list is null for the user: " + this.id;
         return reviewList.size();
     }
 
@@ -64,11 +64,19 @@ public class User {
     }
 
     public void refreshUserLevel() {
-        assert reviewList != null: "Review list is null for the user: \" + this.id";
         int count = reviewList.size();
         if(count < 4) return;
         if (count >= 4 && count < 8) this.level = UserLevel.LEVEL2;
         else if (count >= 8 && count < 16) this.level = UserLevel.LEVEL3;
         else this.level = UserLevel.LEVEL4;
+    }
+    public void addToReviewList(Review review) {
+        this.reviewList.add(review);
+    }
+    public void setReviewsList(int index, Review review) {
+        this.reviewList.set(index, review);
+    }
+    public int getIndexOfInReviewList(Review review) {
+        return this.reviewList.indexOf(review);
     }
 }

@@ -28,10 +28,10 @@ public class RestaurantServices {
         else
             reviewList = reviewList.stream().sorted(Comparator.comparingInt(Review::getRating).reversed()).toList();
 
-        System.out.println('[');
+        System.out.print('[');
         for (int i = 0; i < reviewList.size(); i++) {
-            System.out.println(reviewList.get(i));
-            if (i < reviewList.size() - 1) System.out.println(", ");
+            System.out.print(reviewList.get(i));
+            if (i < reviewList.size() - 1) System.out.print(", ");
         }
         System.out.println(']');
     }
@@ -44,10 +44,10 @@ public class RestaurantServices {
         else
             reviewList = reviewList.stream().filter(review -> review.getRating() >= low && review.getRating() <= high).sorted(Comparator.comparingInt(Review::getRating).reversed()).toList();
 
-        System.out.println('[');
+        System.out.print('[');
         for (int i = 0; i < reviewList.size(); i++) {
-            System.out.println(reviewList.get(i));
-            if (i < reviewList.size() - 1) System.out.println(", ");
+            System.out.print(reviewList.get(i));
+            if (i < reviewList.size() - 1) System.out.print(", ");
         }
         System.out.println(']');
     }
@@ -57,10 +57,10 @@ public class RestaurantServices {
     }
     public void listRestaurant() {
         List<Restaurant> restaurantList = restaurantRepo.findAll();
-        System.out.println('[');
+        System.out.print('[');
         for (int i = 0; i < restaurantList.size(); i++) {
-            System.out.println(restaurantList.get(i));
-            if (i < restaurantList.size() - 1) System.out.println(", ");
+            System.out.print(restaurantList.get(i));
+            if (i < restaurantList.size() - 1) System.out.print(", ");
         }
         System.out.println(']');
     }

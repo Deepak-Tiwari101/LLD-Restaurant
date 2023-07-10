@@ -3,17 +3,14 @@ package repositories;
 import entities.User;
 import repositories.interfaces.IUserRepo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class UserRepository implements IUserRepo {
     private final Map<Long, User> userMap;
     private Long autoIncreament = 1L;
 
-    public UserRepository(Map<Long, User> userMap) {
-        this.userMap = userMap;
+    public UserRepository() {
+        this.userMap = new HashMap<>();
     }
 
     @Override

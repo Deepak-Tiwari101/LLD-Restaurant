@@ -7,8 +7,6 @@ import repositories.interfaces.IRestaurantRepo;
 import repositories.interfaces.IReviewRepo;
 import repositories.interfaces.IUserRepo;
 
-import java.util.List;
-
 public class ReviewServices {
     private final IReviewRepo reviewRepo;
     private final IUserRepo userRepo;
@@ -33,19 +31,19 @@ public class ReviewServices {
             Review newReview = new Review(review.getId(), rating, user, restaurant); // created a review with new rating to override the old one
             reviewRepo.updateRevMapWithNewReview(review.getId(), newReview);
 
-            user.getReviewList().set(user.getReviewList().indexOf(review), newReview);
+            user.setReviewsList(user.getIndexOfInReviewList(review), newReview);
             user.refreshUserLevel();
 
-            restaurant.getReviewsList().set(restaurant.getReviewsList().indexOf(review), newReview);
+            restaurant.setReviewsList(restaurant.getIndexOfInReviewList(review), newReview);
             restaurant.refreshAvgRating();
 
             review = newReview;
         } else {
             review = reviewRepo.save(new Review(rating), user, restaurant);
-            user.getReviewList().add(review);
+            user.addToReviewList(review);
             user.refreshUserLevel();
 
-            restaurant.getReviewsList().add(review);
+            restaurant.addToReviewList(review);
             restaurant.refreshAvgRating();
         }
         System.out.println(review + " added successfully for " + restaurant + " by " + user + "!");
@@ -60,19 +58,19 @@ public class ReviewServices {
             Review newReview = new Review(review.getId(), rating, dishNames, descriptions, user, restaurant); // created a review with new rating to override the old one
             reviewRepo.updateRevMapWithNewReview(review.getId(), newReview);
 
-            user.getReviewList().set(user.getReviewList().indexOf(review), newReview);
+            user.setReviewsList(user.getIndexOfInReviewList(review), newReview);
             user.refreshUserLevel();
 
-            restaurant.getReviewsList().set(restaurant.getReviewsList().indexOf(review), newReview);
+            restaurant.setReviewsList(restaurant.getIndexOfInReviewList(review), newReview);
             restaurant.refreshAvgRating();
 
             review = newReview;
         } else {
             review = reviewRepo.save(new Review(rating, dishNames, descriptions), user, restaurant);
-            user.getReviewList().add(review);
+            user.addToReviewList(review);
             user.refreshUserLevel();
 
-            restaurant.getReviewsList().add(review);
+            restaurant.addToReviewList(review);
             restaurant.refreshAvgRating();
         }
         System.out.println(review + " added successfully for " + restaurant + " by " + user);

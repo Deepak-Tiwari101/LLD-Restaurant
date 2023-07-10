@@ -5,17 +5,14 @@ import entities.Review;
 import entities.User;
 import repositories.interfaces.IReviewRepo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ReviewRepository implements IReviewRepo {
     private final Map<Long, Review> reviewMap;
     private Long autoIncreament = 1L;
 
-    public ReviewRepository(Map<Long, Review> reviewMap) {
-        this.reviewMap = reviewMap;
+    public ReviewRepository() {
+        this.reviewMap = new HashMap<>();
     }
 
     @Override

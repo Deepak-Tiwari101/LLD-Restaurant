@@ -1,11 +1,9 @@
 package repositories;
 
 import entities.Restaurant;
-import entities.User;
 import repositories.interfaces.IRestaurantRepo;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RestaurantRepository implements IRestaurantRepo {
     private final Map<Long, Restaurant> restaurantMap;
